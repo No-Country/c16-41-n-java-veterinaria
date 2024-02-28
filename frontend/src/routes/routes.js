@@ -12,8 +12,8 @@ export const routes = {
     }
 };
 export const links = [
-    { name: "Inicio", url: "/" },
-    { name: "Sobre nosotros", url: "/sobre-nosotros" },
-    { name: "Servicios", url: "/servicios" },
-    { name: "Contacto", url: "/contacto" }
+    { name: 'Inicio', url: '/' },
+    { name: 'Sobre nosotros', url: '/sobre-nosotros' },
+    { name: 'Servicios', url: '/servicios' },
+    { name: 'Contacto', url: '/contacto' }
 ];

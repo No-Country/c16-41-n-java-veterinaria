@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Logo from "../../assets/logo.svg"
-import { MdOutlinePets, MdMenu, MdClose, MdLogin } from "react-icons/md";
+import { useState } from 'react';
+import Logo from '../../assets/logo.svg';
+import { MdMenu, MdClose, MdLogin } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
-import { links, routes } from '../../routes/routes';
+import { links } from '../../routes/routes';
 
 export default function Header() {
 
@@ -18,7 +18,7 @@ export default function Header() {
                         <span>Veterinaria</span>
                         <span>No Country</span>
                     </p>
-                    <img src={Logo} alt="Logo" className='h-12' />
+                    <img src={Logo} alt='Logo' className='h-12' />
                 </NavLink>
 
                 <div onClick={() => setOpen(!open)} className='absolute right-8 top-4 cursor-pointer md:hidden z-10'>

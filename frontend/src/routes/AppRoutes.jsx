@@ -8,6 +8,7 @@ import Register from '../pages/Register'
 import AuthGuard from './AuthGuard'
 import Profile from '../pages/Profile'
 import Appointments from '../pages/Appointments'
+import Footer from '../components/common/Footer'
 
 export default function AppRoutes() {
     return (
@@ -26,6 +27,7 @@ export default function AppRoutes() {
                     </Route>
                 */}
             </Routes>
+            <Footer />
         </BrowserRouter>
     )
 }

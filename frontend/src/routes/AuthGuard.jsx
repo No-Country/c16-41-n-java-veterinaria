@@ -1,5 +1,5 @@
-//import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
+//import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
 
 export function AuthGuard () {
     //Revisar en redux si hay un usuario guardado con sesion iniciada
