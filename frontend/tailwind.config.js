@@ -17,6 +17,9 @@ export default {
         'quaternary': '#EE964B',
         'quinary': '#F95738'
       },
+      backgroundImage: {
+        'gradient-230': 'linear-gradient(230deg, var(--tw-gradient-stops))'
+      },
     },
   },
   plugins: [],
