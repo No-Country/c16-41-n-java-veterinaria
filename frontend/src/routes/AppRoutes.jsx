@@ -9,6 +9,7 @@ import AuthGuard from './AuthGuard'
 import Profile from '../pages/Profile'
 import Appointments from '../pages/Appointments'
 import Footer from '../components/common/Footer'
+import PageNotFound from '../pages/PageNotFound'
 
 export default function AppRoutes() {
     return (
@@ -19,7 +20,7 @@ export default function AppRoutes() {
                 <Route path={routes.public.ABOUT} element={<About />} />
                 <Route path={routes.public.SERVICIOS} element={<Services />} />
                 <Route path={routes.public.REGISTER} element={<Register />} />
-
+                <Route path='*' element={<PageNotFound />} />
                 {/* Guard para que los usuarios sin sesión iniciada no ingresen a perfil y turnos
                     <Route element={<AuthGuard />}>
                     <Route path={routes.private.PROFILE} element={<Profile />} />
