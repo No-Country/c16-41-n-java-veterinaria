@@ -4,7 +4,8 @@ export const routes = {
         ABOUT: '/sobre-nosotros',
         SERVICES: '/servicios',
         CONTACT: '/contacto',
-        REGISTER: '/registro'
+        REGISTER: '/registro',
+        LOGIN: '/iniciar-sesion'
     },
     private: {
         PROFILE: '/perfil',

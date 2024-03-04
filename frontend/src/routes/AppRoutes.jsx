@@ -11,6 +11,7 @@ import Contact from '../pages/Contact'
 import AuthGuard from './AuthGuard'
 import Profile from '../pages/Profile'
 import Appointments from '../pages/Appointments'
+import LogIn from '../pages/LogIn'
 
 export default function AppRoutes() {
     return (
@@ -23,6 +24,7 @@ export default function AppRoutes() {
                 <Route path={routes.public.SERVICES} element={<Services />} />
                 <Route path={routes.public.CONTACT} element={<Contact />} />
                 <Route path={routes.public.REGISTER} element={<Register />} />
+                <Route path={routes.public.LOGIN} element={<LogIn />} />
                 {/* Guard para que los usuarios sin sesión iniciada no ingresen a perfil y turnos
                     <Route element={<AuthGuard />}>
                     <Route path={routes.private.PROFILE} element={<Profile />} />

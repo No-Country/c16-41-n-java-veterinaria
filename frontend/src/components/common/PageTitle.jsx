@@ -1,6 +1,6 @@
 export default function PageTitle({ color, children }) {
     return (
-        <h1 className={`'mt-5 md:my-6 lg:my-10 text-3xl md:text-6xl font-buttons text-center ' + text-` + color}>
+        <h1 className={`'mt-5 md:mt-6 md:mb-5 lg:mt-10 lg:mb-6 text-3xl md:text-6xl font-buttons text-center ' + text-` + color}>
             {children}
         </h1>
     )
