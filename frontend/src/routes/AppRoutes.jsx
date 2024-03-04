@@ -20,7 +20,7 @@ export default function AppRoutes() {
                 <Route path='*' element={<PageNotFound />} />
                 <Route path={routes.public.HOME} element={<Home />} />
                 <Route path={routes.public.ABOUT} element={<About />} />
-                <Route path={routes.public.SERVICIOS} element={<Services />} />
+                <Route path={routes.public.SERVICES} element={<Services />} />
                 <Route path={routes.public.CONTACT} element={<Contact />} />
                 <Route path={routes.public.REGISTER} element={<Register />} />
                 {/* Guard para que los usuarios sin sesión iniciada no ingresen a perfil y turnos

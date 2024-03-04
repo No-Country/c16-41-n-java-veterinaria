@@ -7,7 +7,7 @@ import { BiSolidSend } from 'react-icons/bi';
 export default function About() {
     return (
         <div className='pt-20 md:mb-20 bg-gradient-to-b from-secondary via-secondary/60 to-secondary/10 font-body'>
-            <div className='-z-10 md:my-5  flex flex-col items-center gap-4'>
+            <div className='-z-10 md:my-5 flex flex-col items-center gap-4'>
                 <HistorySection />
                 <MissionSection />
                 <ValuesSection />

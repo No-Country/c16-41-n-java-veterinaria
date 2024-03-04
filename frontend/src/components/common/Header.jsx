@@ -9,7 +9,7 @@ export default function Header() {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className='font-body bg-secondary w-full fixed top-0 left-0 md:border-b border-black'>
+        <div className='z-[100] font-body bg-secondary w-full fixed top-0 left-0 md:border-b border-black'>
             <div className='md:flex items-center justify-between md:px-4 lg:px-10 px-7'>
                 <NavLink to={links[0].url}
                     onClick={() => setOpen(false)}
