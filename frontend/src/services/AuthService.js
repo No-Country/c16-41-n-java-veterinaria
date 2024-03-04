@@ -1,4 +1,4 @@
-import { singleUserAdapter } from "../adapters/UserAdapter";
+import { singleUserAdapter } from '../adapters/UserAdapter';
 
 export const loginUser = async (username, password) => {
     const url = ''; //endpoint

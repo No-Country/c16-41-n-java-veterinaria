@@ -9,7 +9,7 @@ export default function HeroSection() {
         <motion.div className='md:my-5 lg:my-24 p-8 md:p-10 lg:p-12 flex flex-col md:flex-row justify-evenly gap-4 font-body'
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
-            transition={{ ease: "easeOut", duration: 1 }}>
+            transition={{ ease: 'easeOut', duration: 1 }}>
             <div className='flex flex-col gap-4 lg:gap-6 text-center md:text-start'>
                 <h1 className='w-full md:w-4/5 text-5xl md:text-6xl lg:text-8xl font-bold text-zinc-700'>
                     ¡Tu mascota se merece lo mejor!
