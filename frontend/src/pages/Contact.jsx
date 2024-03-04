@@ -1,9 +1,10 @@
 import { MdLocationOn, MdLocalPhone, MdEmail } from 'react-icons/md';
+import MainContainer from '../components/common/Container';
 import DirectionMap from '../components/Contact/DirectionMap';
 
 export default function Contact() {
     return (
-        <div className='pt-20 md:mb-10 bg-gradient-to-b from-secondary via-secondary/60 to-secondary/10 font-body'>
+        <MainContainer>
             <div className='py-12 md:py-14 px-5 bg-quaternary text-center text-secondary'>
                 <h1 className='text-4xl lg:text-6xl font-buttons'>¡Contactanos!</h1>
                 <div className='my-10 flex flex-col md:flex-row gap-5 justify-evenly'>
@@ -37,6 +38,6 @@ export default function Contact() {
             <div className='my-5'>
                 <DirectionMap />
             </div>
-        </div>
+        </MainContainer>
     )
 }

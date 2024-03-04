@@ -1,12 +1,13 @@
 import { NavLink } from 'react-router-dom';
+import { BiSolidSend } from 'react-icons/bi';
+import MainContainer from '../components/common/MainContainer';
 import HistorySection from '../components/About/HistorySection';
 import MissionSection from '../components/About/MissionSection';
 import ValuesSection from '../components/About/ValuesSection';
-import { BiSolidSend } from 'react-icons/bi';
 
 export default function About() {
     return (
-        <div className='pt-20 md:mb-20 bg-gradient-to-b from-secondary via-secondary/60 to-secondary/10 font-body'>
+        <MainContainer>
             <div className='-z-10 md:my-5 flex flex-col items-center gap-4'>
                 <HistorySection />
                 <MissionSection />
@@ -17,6 +18,6 @@ export default function About() {
                     Registrarme <BiSolidSend />
                 </NavLink>
             </div>
-        </div >
+        </MainContainer >
     )
 }

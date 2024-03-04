@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
+import MainContainer from '../components/common/Container';
 import PageNotFoundImg from '../assets/404/404.png';
 
 export default function PageNotFound() {
     return (
-        <div className='pt-20 md:mb-20 bg-gradient-to-b from-secondary via-secondary/60 to-secondary/10 font-body'>
+        <MainContainer>
             <div className='mx-4 xl:mx-auto xl:w-3/4 my-5 md:my-10 pt-5 px-2 bg-quaternary rounded-lg flex flex-col md:flex-row gap-2 items-center justify-evenly'>
                 <div className='order-2 md:order-1'>
                     <img src={PageNotFoundImg} alt='Perro mirando de frente' className='w-11/12 md:w-full' />
@@ -19,6 +20,6 @@ export default function PageNotFound() {
                     </NavLink>
                 </div>
             </div>
-        </div>
+        </MainContainer>
     )
 }
