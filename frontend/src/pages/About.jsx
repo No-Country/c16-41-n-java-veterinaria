@@ -8,7 +8,7 @@ import ValuesSection from '../components/About/ValuesSection';
 export default function About() {
     return (
         <MainContainer>
-            <div className='-z-10 md:my-5 flex flex-col items-center gap-4'>
+            <div className='-z-10 md:mb-5 flex flex-col items-center gap-4'>
                 <HistorySection />
                 <MissionSection />
                 <ValuesSection />

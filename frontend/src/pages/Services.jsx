@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import ServicesSlider from '../components/Services/ServicesSlider';
 import { getServicesTest } from '../services/ServiceService';
-import MainContainer from '../components/common/Container';
+import MainContainer from '../components/common/MainContainer';
+import PageTitle from '../components/common/PageTitle';
 
 export default function Services() {
 
@@ -19,7 +20,7 @@ export default function Services() {
 
 	return (
 		<MainContainer>
-			<h1 className='my-6 mx-auto text-3xl md:text-6xl w-1/2 md:w-full text-quinary font-buttons text-center'>Nuestros servicios</h1>
+			<PageTitle color='quinary'>Nuestros servicios</PageTitle>
 			<div className='w-5/6 xl:w-3/4 mx-auto mt-6 md:mt-8 mb-20 -z-30'>
 				{services && <ServicesSlider services={services} />}
 			</div>

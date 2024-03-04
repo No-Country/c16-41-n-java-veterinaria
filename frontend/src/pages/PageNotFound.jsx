@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import MainContainer from '../components/common/Container';
+import MainContainer from '../components/common/MainContainer';
 import PageNotFoundImg from '../assets/404/404.png';
 
 export default function PageNotFound() {
