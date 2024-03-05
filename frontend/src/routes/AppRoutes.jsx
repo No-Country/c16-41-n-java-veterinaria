@@ -25,10 +25,12 @@ export default function AppRoutes() {
                 <Route path={routes.public.CONTACT} element={<Contact />} />
                 <Route path={routes.public.REGISTER} element={<Register />} />
                 <Route path={routes.public.LOGIN} element={<LogIn />} />
+
+                <Route path={routes.private.PROFILE} element={<Profile />} />
+                <Route path={routes.private.APPOINTMENTS} element={<Appointments />} />
                 {/* Guard para que los usuarios sin sesión iniciada no ingresen a perfil y turnos
-                    <Route element={<AuthGuard />}>
-                    <Route path={routes.private.PROFILE} element={<Profile />} />
-                    <Route path={routes.private.APPOINTMENTS} element={<Appointments />} />
+                    <Route element={<AuthGuard />}>}
+                    
                     </Route>
                 */}
             </Routes>
