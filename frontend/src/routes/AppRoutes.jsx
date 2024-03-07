@@ -15,26 +15,30 @@ import LogIn from '../pages/LogIn'
 
 export default function AppRoutes() {
     return (
-        <BrowserRouter>
-            <Header />
-            <Routes>
-                <Route path='*' element={<PageNotFound />} />
-                <Route path={routes.public.HOME} element={<Home />} />
-                <Route path={routes.public.ABOUT} element={<About />} />
-                <Route path={routes.public.SERVICES} element={<Services />} />
-                <Route path={routes.public.CONTACT} element={<Contact />} />
-                <Route path={routes.public.REGISTER} element={<Register />} />
-                <Route path={routes.public.LOGIN} element={<LogIn />} />
+        <div className='flex flex-col min-h-screen'>
 
-                <Route path={routes.private.PROFILE} element={<Profile />} />
-                <Route path={routes.private.APPOINTMENTS} element={<Appointments />} />
-                {/* Guard para que los usuarios sin sesión iniciada no ingresen a perfil y turnos
-                    <Route element={<AuthGuard />}>}
-                    
-                    </Route>
-                */}
-            </Routes>
-            <Footer />
-        </BrowserRouter>
+            <BrowserRouter className='flex-1'>
+                <Header />
+                <div className='flex-1'>
+                    <Routes>
+                        <Route path='*' element={<PageNotFound />} />
+                        <Route path={routes.public.HOME} element={<Home />} />
+                        <Route path={routes.public.ABOUT} element={<About />} />
+                        <Route path={routes.public.SERVICES} element={<Services />} />
+                        <Route path={routes.public.CONTACT} element={<Contact />} />
+                        <Route path={routes.public.REGISTER} element={<Register />} />
+                        <Route path={routes.public.LOGIN} element={<LogIn />} />
+
+                        {/* Guard para que los usuarios sin sesión iniciada no ingresen a perfil y turnos   */}
+                        <Route element={<AuthGuard />}>
+                            <Route path={routes.private.PROFILE} element={<Profile />} />
+                            <Route path={routes.private.APPOINTMENTS} element={<Appointments />} />
+                        </Route>
+
+                    </Routes>
+                </div>
+                <Footer />
+            </BrowserRouter>
+        </div>
     )
 }

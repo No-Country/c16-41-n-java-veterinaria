@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Logo from '../../assets/logo.svg';
-import { MdMenu, MdClose, MdLogin } from 'react-icons/md';
+import { MdMenu, MdClose } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import { links } from '../../routes/routes';
+import AccountDropdown from './AccountDropdown';
 
 export default function Header() {
 
@@ -39,18 +40,9 @@ export default function Header() {
                                 {link.name}
                             </NavLink>)
                     })}
-                    <NavLink to='/registro'
-                        onClick={() => setOpen(false)}
-                        className='btn uppercase font-semibold px-3 py-1 rounded duration-500 md:hidden text-quaternary'>
-                        Ingresar <MdLogin className='inline' />
-                    </NavLink>
+                    <AccountDropdown setOpen={setOpen} />
                 </div>
-                <NavLink to='/registro'
-                    onClick={() => setOpen(false)}
-                    className='btn uppercase font-semibold px-3 py-1 rounded duration-500 hidden md:block md:static text-quaternary'>
-                    Ingresar <MdLogin className='inline' />
-                </NavLink>
-                {/* button */}
+
             </div>
         </div >
     )

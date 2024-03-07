@@ -1,11 +1,12 @@
 //import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
-export function AuthGuard () {
-    //Revisar en redux si hay un usuario guardado con sesion iniciada
-    //const loginSlice = useSelector(store => store.users);
-    //si encuentra el email retorna el elemento okay, sino navega a la home
-    //return loginSlice.email ? <Outlet/> : <Navigate replace to={'/'}/>
+export function AuthGuard() {
+
+    const user = useSelector(store => store.user.user);
+
+    return user ? <Outlet /> : <Navigate replace to={'/iniciar-sesion'} />
 }
 
-export default  AuthGuard;
+export default AuthGuard;

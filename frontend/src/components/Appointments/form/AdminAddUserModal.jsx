@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react';
-import { FaUserPlus } from 'react-icons/fa';
 import WhiteContainer from '../../common/WhiteContainer';
 import FormInput from '../../common/forms/FormInput';
-import BtnSubmitAppointment from './BtnSubmitAppointment';
 import BtnSubmitUser from './BtnSubmitUser';
 
 export default function AdminAddUserModal({ users, modal, setModal }) {
