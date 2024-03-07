@@ -1,8 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import AuthReducer from './slices/AuthReducer';
+import UserReducer from './slices/userSlice';
+import PetsReducer from './slices/petsSlice';
+import ServicesReducer from './slices/servicesSlice';
+import AppointmentsReducer from './slices/appointmentsSlice';
 
-export const VetStore = configureStore({
+const VetStore = configureStore({
     reducer: {
-        auth: AuthReducer
+        user: UserReducer,
+        services: ServicesReducer,
+        pets: PetsReducer,
+        appointments: AppointmentsReducer,
     }
-})
+});
+
+export default VetStore;
