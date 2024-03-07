@@ -1,34 +1,48 @@
 import { singleAppointmentAdapter } from '../adapters/AppointmentAdapter'
-
-export const getAppointmentsByUser = async (userId) => {
-
-    const url = '/appointments' + userId; //endpoint
-    const externalData = await fetch(url);
-    const res = await externalData.json();
-
-    if (!res || res.error || res.userId !== userId) {
-        throw new Error('Usuario sin turnos existentes.');
-    }
-
-    // de la respuesta json a un objeto user
-    const appointments = res.map(singleAppointmentAdapter);
-
-    return appointments;
-
-}
+import { fetchData, putData } from './api';
 
 export const getAllAppointments = async () => {
+    const path = '/appointments';
+    const response = await fetchData(path);
+    return response.map(singleAppointmentAdapter);
+}
 
-    const url = ''; //endpoint
-    const externalData = await fetch(url);
-    const res = await externalData.json();
+export const getAppointmentsByUserId = async (ownerId) => {
 
-    // de la respuesta json a un objeto user
-    const appointments = res.map(singleAppointmentAdapter);
-
-    return appointments;
+    const allAppointments = await getAllAppointments();
+    const foundAppointments = allAppointments.filter((ap) => ap.ownerId == ownerId);
+    if (!foundAppointments || foundAppointments.error) {
+        throw new Error('Usuario sin turnos registrados');
+    }
+    return foundAppointments;
 
 }
+
+export const getAppointmentsById = async (id) => {
+
+    const allAppointments = await getAllAppointments();
+    const foundAppointments = allAppointments.filter((ap) => ap.id == id);
+    if (!foundAppointments || foundAppointments.error) {
+        throw new Error('Usuario sin turnos registrados');
+    }
+    return foundAppointments;
+
+}
+
+export const createAppointment = async (newData) => {
+
+    const path = `/appointments`;
+    return putData('POST', path, newData);
+
+}
+
+export const updateAppointment = async (appointmentId, newData) => {
+
+    const path = `/appointments/${appointmentId}`;
+    return putData('PUT', path, newData);
+
+}
+
 export const getAppointmentsTest = () => {
 
     const data = [
@@ -36,7 +50,7 @@ export const getAppointmentsTest = () => {
         { id: 2, ownerId: '2', petId: '2', dateTime: '16/01/2024', serviceId: '4', status: 'Asistio' },
         { id: 3, ownerId: '3', petId: '3', dateTime: '20/01/2024', serviceId: '3', status: 'Asistio' },
         { id: 4, ownerId: '3', petId: '3', dateTime: '22/02/2024', serviceId: '4', status: 'Asistio' },
-        { id: 5, ownerId: '3', petId: '3', dateTime: '22/03/2024', serviceId: '5', status: 'Pendiente'}
+        { id: 5, ownerId: '3', petId: '3', dateTime: '22/03/2024', serviceId: '5', status: 'Pendiente' }
     ]
 
     const appointments = data.map(singleAppointmentAdapter);

@@ -1,19 +1,50 @@
 import { singleUserAdapter } from '../adapters/UserAdapter'
+import { fetchData, putData } from './api';
 
-export const getUserByUsername = async (username) => {
+export const getAllUsers = async () => {
+    const path = '/users';
+    const response = await fetchData(path);
 
-    const url = '' + username; //endpoint
-    const externalData = await fetch(url);
-    const res = await externalData.json();
+    return response.map(singleUserAdapter);
+}
 
-    if (!res || res.error || res.username !== username) {
+export const logIn = async (email, password) => {
+
+    const allUsers = await getAllUsers();
+    const foundUser = allUsers.find((user) => user.email == email);
+    if (!foundUser || foundUser.error) {
         throw new Error('Usuario inexistente');
     }
+    if (foundUser.email == email && foundUser.passwordHash != password) {
+        throw new Error('Contraseña incorrecta');
+    }
+    return foundUser;
 
-    // de la respuesta json a un objeto user
-    const user = singleUserAdapter(res);
+}
+export const signUp = async (newUser) => {
 
-    return user;
+    const allUsers = await getAllUsers();
+    const foundUser = allUsers.find((user) => user.email == newUser.email);
+
+    if (foundUser) {
+        throw new Error('Email ya registrado');
+    }
+    const savedUser = createUser(newUser);
+    return savedUser;
+
+}
+
+export const createUser = async (newData) => {
+
+    const path = `/users`;
+    return putData('POST', path, newData);
+
+}
+
+export const updateUser = async (userId, newData) => {
+
+    const path = `/users/${userId}`;
+    return putData('PUT', path, newData);
 
 }
 

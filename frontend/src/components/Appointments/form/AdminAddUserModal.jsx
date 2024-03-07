@@ -1,17 +1,32 @@
+import { useDispatch } from 'react-redux';
 import WhiteContainer from '../../common/WhiteContainer';
 import FormInput from '../../common/forms/FormInput';
 import BtnSubmitUser from './BtnSubmitUser';
+import { createUser } from '../../../services/UserService';
 
 export default function AdminAddUserModal({ users, modal, setModal }) {
 
+    const dispatch = useDispatch();
     if (!modal) return;
 
-    const handleCreateAppointment = (e) => {
+    const handleCreateAppointment = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const formValues = Object.fromEntries(formData);
 
-        //logica de envio a la bd
+        const user = {
+            name: formValues.inputUserName,
+            email: formValues.inputEmail,
+            passwordHash: formValues.inputPass,
+            role: 'Owner',
+            phone: formValues.inputPhone
+        };
+
+        try {
+            const savedUser = await createUser(user);
+        } catch (error) {
+            console.error('Error al crear usuario:', error.message);
+        }
 
         setModal(false);
     }

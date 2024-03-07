@@ -1,36 +1,45 @@
 import { singlePetAdapter } from '../adapters/PetAdapter'
+import { fetchData, putData } from './api';
 
-export const getPetsByUser = async (userId) => {
+export const getAllPets = async () => {
+    const path = '/pets';
+    const response = await fetchData(path);
+    return response.map(singlePetAdapter)
+}
 
-    const url = '' + userId; //endpoint
-    const externalData = await fetch(url);
-    const res = await externalData.json();
+export const getOwnerPetsById = async (ownerid) => {
 
-    if (!res || res.error || pets.userId !== userId) {
-        throw new Error('Usuario sin mascotas registradas.');
+    const allPets = await getAllPets();
+    const foundPets = allPets.filter((pet) => pet.ownerid == ownerid);
+    if (!foundPets || foundPets.error) {
+        throw new Error('Usuario sin mascota registradas');
     }
-
-    // de la respuesta json a un objeto user
-    const pets = res.map(singlePetAdapter);
-
-    return pets;
+    return foundPets;
 
 }
 
 export const getPetById = async (petId) => {
 
-    const url = '' + petId; //endpoint
-    const externalData = await fetch(url);
-    const res = await externalData.json();
-
-    if (!res || res.error || res.petId !== petId) {
+    const allPets = await getAllPets();
+    const foundPet = allPets.find((pet) => pet.id == petId);
+    if (!foundPet || foundPet.error) {
         throw new Error('Mascota inexistente');
     }
+    return foundPet;
 
-    // de la respuesta json a un objeto user
-    const pet = singlePetAdapter(res);
+}
 
-    return pet;
+export const createPet = async (newData) => {
+
+    const path = `/pets`;
+    return putData('POST', path, newData);
+
+}
+
+export const updatePet = async (petId, newData) => {
+
+    const path = `/pets/${petId}`;
+    return putData('PUT', path, newData);
 
 }
 

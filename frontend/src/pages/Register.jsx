@@ -2,27 +2,40 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import MainContainer from '../components/common/MainContainer';
 import PageTitle from '../components/common/PageTitle';
 import FormInput from '../components/common/forms/FormInput';
-import { getUsersTest } from '../services/UserService';
+import { createUser, getUsersTest, signUp } from '../services/UserService';
 import { useDispatch } from 'react-redux';
+import { login } from '../redux/slices/userSlice';
 
 export default function Register() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleCreateAccount = (e) => {
+    const handleCreateAccount = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const formValues = Object.fromEntries(formData);
 
-        //logica de envio a la bd
-        ////////
+        const user = {
+            name: formValues.inputUserName,
+            email: formValues.inputEmail,
+            passwordHash: formValues.inputPass,
+            role: 'Owner',
+            phone: formValues.inputPhone
+        };
+
+        try {
+            const savedUser = await createUser(user);
+            dispatch(login(savedUser));
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error.message);
+        }
 
         //simulacion de usuario guardado en la bd
-        const user = getUsersTest()[1];
-        if (user) {
-            navigate('/iniciar-sesion');
-        }
+        // const user = getUsersTest()[1];
+        // if (user) {
+        //     navigate('/iniciar-sesion');
+        // }
     }
 
     return (

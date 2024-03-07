@@ -15,15 +15,28 @@ export default function AdminAddAppointmentModal({ users, pets, modal, setModal 
 
     if (!modal) return;
 
-    const handleCreateAppointment = (e) => {
+    const handleCreateAppointment = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const formValues = Object.fromEntries(formData);
 
-        //logica de envio a la bd
+        const appointment = {
+            ownerId: userId,
+            petId: formValues.inputPet,
+            serviceId: formValues.inputService,
+            dateTime: formValues.inputDateTime,
+            status: 'Pendiente'
+        }
+
+        try {
+            const savedAppointment = await createAppointment(appointment);
+        } catch (error) {
+            console.error('Error al registrar turno:', error.message);
+        }
 
         setModal(false);
     }
+
 
     return (
         <WhiteContainer>

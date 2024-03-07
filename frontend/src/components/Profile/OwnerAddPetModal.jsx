@@ -4,6 +4,7 @@ import FormInput from '../common/forms/FormInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { toPet } from '../../domain/models/Pet';
 import { setPets } from '../../redux/slices/petsSlice';
+import { createPet } from '../../services/PetService';
 
 export default function OwnerAddPetModal({ modal, setModal }) {
 
@@ -13,12 +14,25 @@ export default function OwnerAddPetModal({ modal, setModal }) {
 
     if (!modal) return;
 
-    const handleSubmitPet = (e) => {
+    const handleSubmitPet = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const formValues = Object.fromEntries(formData);
 
-        const newPet = toPet('10', formValues.inputPetName, formValues.inputSpecies, formValues.inputBreed, formValues.inputBirthdate, user.id);
+        const newPet = {
+            name: formValues.inputPetName,
+            species: formValues.inputSpecies,
+            breed: formValues.inputBreed,
+            birthdate: formValues.inputBirthdate,
+            ownerid: user.id
+        };
+
+        try {
+            const savedPet = await createPet(newPet);
+        } catch (error) {
+            console.error('Error al registrar mascota:', error.message);
+        }
+
         //envio a la bd
         const updatedPets = [...pets, newPet];
         dispatch(setPets(updatedPets))

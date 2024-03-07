@@ -1,21 +1,33 @@
+import { createAppointment } from '../../../services/AppointmentService';
 import WhiteContainer from '../../common/WhiteContainer';
 import FormInput from '../../common/forms/FormInput';
 import SelectPet from '../../common/forms/SelectPet';
 import SelectService from '../../common/forms/SelectService';
 import BtnSubmitAppointment from './BtnSubmitAppointment';
 
-export default function OwnerAddAppointmentModal({ pets, modal, setModal }) {
+export default function OwnerAddAppointmentModal({ user, pets, modal, setModal }) {
 
-    const user = ''; //get from redux
 
     if (!modal) return;
 
-    const handleCreateAppointment = (e) => {
+    const handleCreateAppointment = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const formValues = Object.fromEntries(formData);
 
-        //logica de envio a la bd
+        const appointment = {
+            ownerId: user.id,
+            petId: formValues.inputPet,
+            serviceId: formValues.inputService,
+            dateTime: formValues.inputDateTime,
+            status: 'Pendiente'
+        }
+
+        try {
+            const savedAppointment = await createAppointment(appointment);
+        } catch (error) {
+            console.error('Error al registrar turno:', error.message);
+        }
 
         setModal(false);
     }

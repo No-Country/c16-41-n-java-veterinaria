@@ -8,8 +8,13 @@ import { MdCalendarMonth } from 'react-icons/md';
 import { FaUserPlus } from 'react-icons/fa';
 import AdminTableUsers from './AdminTableUsers';
 import AdminAddUserModal from './form/AdminAddUserModal';
+import { useSelector } from 'react-redux';
 
-export default function AdminAppointments({ appointments, users, pets }) {
+export default function AdminAppointments() {
+
+    const users = useSelector(store => store.users.users);
+    const pets = useSelector(store => store.pets.pets);
+    const appointments = useSelector(store => store.appointments.appointments);
 
     const [modalAppointment, setModalAppointment] = useState(false);
     const [modalUser, setModalUser] = useState(false);
