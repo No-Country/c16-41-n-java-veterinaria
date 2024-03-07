@@ -33,3 +33,22 @@ export const getPetById = async (petId) => {
     return pet;
 
 }
+
+export const getPetsTest = () => {
+
+    const data = [
+        { id: '1', name: 'Pepito', species: 'Roedor', breed: 'Hamster', birthdate: '10/12/2023', ownerid: '2' },
+        { id: '2', name: 'Puppy', species: 'Perro', breed: 'Caniche', birthdate: '10/10/2023', ownerid: '2' },
+        { id: '3', name: 'Bigotes', species: 'Gato', breed: 'Siberiano', birthdate: '20/09/2023', ownerid: '3' },
+        { id: '4', name: 'Mia', species: 'Gata', breed: 'Himalayo', birthdate: '22/11/2023', ownerid: '4' },
+    ];
+
+    const pets = data.map(singlePetAdapter);
+
+    return pets;
+};
+
+export const getPetByPetId = (pets, id) => {
+    const pet = pets.find((p) => p.id == id);
+    return pet ? pet : null;
+}

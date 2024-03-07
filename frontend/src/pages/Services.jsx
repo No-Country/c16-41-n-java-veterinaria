@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import ServicesSlider from '../components/Services/ServicesSlider';
-import { getServicesTest } from '../services/ServiceService';
+import { getServices } from '../services/ServiceService';
 import MainContainer from '../components/common/MainContainer';
 import PageTitle from '../components/common/PageTitle';
 
@@ -11,8 +11,7 @@ export default function Services() {
 
 	useEffect(() => {
 		const getData = () => {
-			//provisorio uso el servicesTest
-			const savedServices = getServicesTest();
+			const savedServices = getServices();
 			setServices(savedServices);
 		}
 		getData();

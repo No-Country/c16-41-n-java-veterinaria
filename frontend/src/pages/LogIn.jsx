@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import MainContainer from "../components/common/MainContainer";
 import PageTitle from "../components/common/PageTitle";
+import FormInput from "../components/common/forms/FormInput";
 
 export default function LogIn() {
     return (
@@ -9,16 +10,8 @@ export default function LogIn() {
                 <PageTitle color='primary'>Iniciar <span className='block lg:inline-block'>sesión</span></PageTitle>
                 <h2 className='mb-2 lg:w- lg:w-2/3 mx-auto text-center'>Ingresa tus datos para iniciar sesión en tu cuenta:</h2>
                 <form className='flex flex-col gap-3 mx-6 lg:w-2/3 lg:mx-auto'>
-                    <div className='flex flex-col gap-1'>
-                        <label htmlFor='inputEmail' className='font-semibold md:text-lg'>Correo electrónico</label>
-                        <input type='email' name='inputEmail' id='inputEmail' placeholder='usuario@email.com' required
-                            className='border border-primary/30 outline-transparent focus:outline-primary py-1 px-2 rounded-2xl text-sm md:text-base' />
-                    </div>
-                    <div className='flex flex-col gap-1'>
-                        <label htmlFor='inputPass' className='font-semibold md:text-lg'>Contraseña</label>
-                        <input type='password' name='inputPass' id='inputPass' required
-                            className='border border-primary/30 outline-transparent focus:outline-primary py-1 px-2 rounded-2xl text-sm md:text-base' />
-                    </div>
+                    <FormInput type='email' label='Correo electrónico ' name='inputEmail' placeholder='usuario@email.com' />
+                    <FormInput type='password' label='Contraseña ' name='inputPass' placeholder={''} />
                     <p className='text-sm'>
                         ¿Tenés problemas iniciando sesión? <NavLink to='/contacto' className='underline'>Contactanos</NavLink>
                     </p>
