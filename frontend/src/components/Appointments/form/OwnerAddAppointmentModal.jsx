@@ -1,12 +1,18 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { toAppointment } from '../../../domain/models/Appointment';
+import { setAppointments } from '../../../redux/slices/appointmentsSlice';
 import WhiteContainer from '../../common/WhiteContainer';
 import FormInput from '../../common/forms/FormInput';
 import SelectPet from '../../common/forms/SelectPet';
 import SelectService from '../../common/forms/SelectService';
 import BtnSubmitAppointment from './BtnSubmitAppointment';
+import { getAppointmentsTest } from '../../../services/AppointmentService';
 
 export default function OwnerAddAppointmentModal({ pets, modal, setModal }) {
 
-    const user = ''; //get from redux
+    const user = useSelector(store => store.user.user);
+    const dispatch = useDispatch();
+    const testAllAppointments = getAppointmentsTest();
 
     if (!modal) return;
 
@@ -15,8 +21,12 @@ export default function OwnerAddAppointmentModal({ pets, modal, setModal }) {
         const formData = new FormData(e.target);
         const formValues = Object.fromEntries(formData);
 
-        //logica de envio a la bd
-
+        const newPet = toAppointment(10, user.id, formValues.inputPet, formValues.inputService, formValues.inputDateTime, 'Pendiente');
+        //envio a la bd
+        const a = testAllAppointments.filter((a) => a.ownerId == 2);
+        const updatedPets = [...a, newPet];
+        console.log("actualizar"  + newPet)
+        dispatch(setAppointments(updatedPets))
         setModal(false);
     }
 

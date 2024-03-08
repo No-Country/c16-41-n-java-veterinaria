@@ -1,7 +1,12 @@
+import { useSelector } from "react-redux";
 import { getPetByPetId } from "../../services/PetService";
 import { getServiceById } from "../../services/ServiceService"
 
-export default function OwnerTableAppointments({ appointments, pets }) {
+export default function OwnerTableAppointments({ ap, pets }) {
+
+    const user = useSelector(store => store.user.user);
+    const a = useSelector(store => store.appointments.appointments);
+    const appointments = a.filter((a) => a.ownerId == '2')
 
     return (
         <div className='my-4 mx-2 relative overflow-x-auto shadow-md rounded-lg'>

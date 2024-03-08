@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MainContainer from "../components/common/MainContainer";
 import OwnerAppointments from "../components/Appointments/OwnerAppointments";
 import { getUsersTest } from "../services/UserService";
 import { getPetsTest } from "../services/PetService";
 import { getAppointmentsTest } from "../services/AppointmentService";
 import AdminAppointments from "../components/Appointments/AdminAppointments";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setAppointments } from "../redux/slices/appointmentsSlice";
 
 export default function Appointments() {
 
     const user = useSelector(store => store.user.user);
+    const appointments = useSelector(store => store.appointments.appointments);
+    const dispatch = useDispatch();
     console.log('aca llegue')
 
     const testAllUsers = getUsersTest();
@@ -17,12 +20,13 @@ export default function Appointments() {
     const testAllAppointments = getAppointmentsTest();
 
     //test user owner
+    const testAppointments = appointments;
     const testPet = testAllPets.filter((p) => p.ownerid == user.id);
-    const testAppointments = testAllAppointments.filter((a) => a.ownerId == user.id);
+
 
     useEffect(() => {
 
-    }, [])
+    }, [dispatch])
 
     return (
         <MainContainer>

@@ -10,7 +10,7 @@ export default function Footer() {
                     className='text-xl md:text-xl flex items-center gap-4 z-10'>
                     <p className='text-center flex flex-col'>
                         <span>Veterinaria</span>
-                        <span>No Country</span>
+                        <span>Amigos Peludos</span>
                     </p>
                     <img src={Logo} alt='Logo' className='h-8' />
                 </NavLink>

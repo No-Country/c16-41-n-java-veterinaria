@@ -15,10 +15,8 @@ export default function Profile() {
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
-        //aca buscaria en la bd
-        const petsFromUser = getPetsTest().filter((p) => p.ownerid == user.id);
-        dispatch(setPets(petsFromUser));
-    }, [])
+
+    }, [dispatch])
 
     return (
         <MainContainer>

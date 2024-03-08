@@ -5,11 +5,20 @@ import FormInput from '../components/common/forms/FormInput';
 import { getUsersTest } from '../services/UserService';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/slices/userSlice';
+import { getPetsTest } from '../services/PetService';
+import { getAppointmentsTest } from '../services/AppointmentService';
+import { setPets } from '../redux/slices/petsSlice';
+import { setAppointments } from '../redux/slices/appointmentsSlice';
 
 export default function LogIn() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const testAllUsers = getUsersTest();
+    const testAllPets = getPetsTest();
+    const testAllAppointments = getAppointmentsTest();
+    const user = getUsersTest()[1];
 
     const handleLogIn = (e) => {
         e.preventDefault();
@@ -20,9 +29,11 @@ export default function LogIn() {
         ////////
 
         //simulacion de usuario recolectado que inicia sesion
-        const user = getUsersTest()[1];
+
         if (user) {
             dispatch(login(user));
+            dispatch(setPets(testAllPets.filter((p) => p.ownerid == 2)));
+            dispatch(setAppointments(testAllAppointments.filter((a) => a.ownerId == 2)));
             navigate('/perfil');
         }
     }
