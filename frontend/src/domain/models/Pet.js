@@ -11,14 +11,13 @@ export const apiToPetFormat = (id, name, species, breed, birthdate, ownerid) => 
 
 export const petToAPIFormat = (data) => {
 
-    const { id, name, species, breed, birthdate, ownerid } = data;
+    const { name, species, breed, birthdate, ownerid } = data;
     
     return {
-        id: id,
         name: name,
         species: species,
         breed: breed,
-        birthdate: birthdate,
+        birth: birthdate,
         owner_id: ownerid
     };
 }
