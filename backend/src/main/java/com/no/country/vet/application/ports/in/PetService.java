@@ -5,7 +5,7 @@ import com.no.country.vet.domain.models.Pet;
 import java.util.List;
 
 public interface PetService {
-    Pet createPet(Pet pet);
+    Pet registerPet(Pet pet);
     Pet getPetById(String id);
     List<Pet> getPetsByUserId(String userId);
     Pet updatePet(Pet pet);

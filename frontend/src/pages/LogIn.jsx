@@ -19,6 +19,7 @@ export default function LogIn() {
         try {
             const user = await logIn(formValues.inputEmail, formValues.inputPass);
             dispatch(login(user));
+            navigate('/perfil');
         } catch (error) {
             console.error('Error al iniciar sesión:', error.message);
         }

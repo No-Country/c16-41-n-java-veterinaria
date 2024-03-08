@@ -17,7 +17,7 @@ export default function AdminAddUserModal({ users, modal, setModal }) {
         const user = {
             name: formValues.inputUserName,
             email: formValues.inputEmail,
-            passwordHash: formValues.inputPass,
+            password: formValues.inputPass,
             role: 'Owner',
             phone: formValues.inputPhone
         };

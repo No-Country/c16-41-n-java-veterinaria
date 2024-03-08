@@ -43,12 +43,12 @@ export default function Appointments() {
         <MainContainer>
             {/*if user is a pet owner it can manage appointments*/}
             {user.role == 'Owner' &&
-                <OwnerAppointments appointments={listAppointments} pets={listPets} />
+                <OwnerAppointments/>
             }
             {/*if user is admin it can manage users, pets, and appointments*/}
             {user.role == 'Admin' &&
                 <>
-                    <AdminAppointments appointments={listAppointments} users={listUsers} pets={listPets} />
+                    <AdminAppointments/>
                 </>
             }
         </MainContainer>

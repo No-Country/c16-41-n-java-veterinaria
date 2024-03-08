@@ -19,7 +19,7 @@ export default function Register() {
         const user = {
             name: formValues.inputUserName,
             email: formValues.inputEmail,
-            passwordHash: formValues.inputPass,
+            password: formValues.inputPass,
             role: 'Owner',
             phone: formValues.inputPhone
         };

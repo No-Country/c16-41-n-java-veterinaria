@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -36,7 +35,6 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet updatePet(Pet pet) {
-        // Verifica si la mascota existe antes de actualizarla
         return petRepository.save(pet);
     }
 

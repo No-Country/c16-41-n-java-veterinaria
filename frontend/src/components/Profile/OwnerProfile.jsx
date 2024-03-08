@@ -4,7 +4,7 @@ import ProfileData from './ProfileData';
 
 export default function OwnerProfile({ user }) {
     
-    const { id, name, email, passwordHash, role, phone } = user;
+    const { id, name, email, password, role, phone } = user;
 
     return (
         <WhiteContainer>
@@ -13,7 +13,7 @@ export default function OwnerProfile({ user }) {
                 <ProfileData title='Nombre completo' value={name} />
                 <ProfileData title='Teléfono' value={phone} />
                 <ProfileData title='Correo electrónico' value={email} />
-                <ProfileData title='Contraseña' value={passwordHash.replace(/./g, '*')} />
+                <ProfileData title='Contraseña' value={password.replace(/./g, '*')} />
             </div>
         </WhiteContainer>
     )

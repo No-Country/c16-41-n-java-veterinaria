@@ -1,4 +1,4 @@
-const api = 'http://localhost:8080';
+const api = 'http://localhost:8090/api';
 const headers = {
     'Content-Type': 'application/json',
     'accept': 'application/json'
@@ -22,7 +22,7 @@ export const fetchData = async (path) => {
 export const putData = async (method, path, newData) => {
     const url = api + path;
     const res = await fetch(url, {
-        method: { method },
+        method: method,
         headers,
         body: JSON.stringify(newData)
     });
