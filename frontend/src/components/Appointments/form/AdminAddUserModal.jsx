@@ -16,6 +16,7 @@ export default function AdminAddUserModal({ users, modal, setModal }) {
 
         const user = {
             name: formValues.inputUserName,
+            lastname: formValues.inputUserLastName,
             email: formValues.inputEmail,
             password: formValues.inputPass,
             role: 'Owner',
@@ -24,11 +25,11 @@ export default function AdminAddUserModal({ users, modal, setModal }) {
 
         try {
             const savedUser = await createUser(user);
+            setModal(false);
         } catch (error) {
             console.error('Error al crear usuario:', error.message);
         }
 
-        setModal(false);
     }
 
     return (
@@ -39,7 +40,8 @@ export default function AdminAddUserModal({ users, modal, setModal }) {
             <form className='my-2' onSubmit={handleCreateAppointment}>
                 <div className='mx-4 py-6 grid grid-cols-1 gap-x-10 gap-y-2 md:gap-y-4 md:text-start'>
 
-                    <FormInput type='text' label='Nombre completo ' name='inputUserName' placeholder='Jane Doe' />
+                    <FormInput type='text' label='Nombre/s ' name='inputUserName' placeholder='Jane' />
+                    <FormInput type='text' label='Apellido/s ' name='inputUserLastName' placeholder='Doe' />
                     <FormInput type='email' label='Correo electrónico ' name='inputEmail' placeholder='usuario@email.com' />
                     <FormInput type='tel' label='Teléfono ' name='inputPhone' placeholder='112345678' />
                     <FormInput type='password' label='Contraseña ' name='inputPass' placeholder={''} />

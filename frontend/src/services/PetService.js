@@ -1,4 +1,5 @@
 import { singlePetAdapter } from '../adapters/PetAdapter'
+import { petToAPIFormat } from '../domain/models/Pet';
 import { fetchData, putData } from './api';
 
 export const getAllPets = async () => {
@@ -12,7 +13,7 @@ export const getOwnerPetsById = async (ownerid) => {
     const allPets = await getAllPets();
     const foundPets = allPets.filter((pet) => pet.ownerid == ownerid);
     if (!foundPets || foundPets.error) {
-        throw new Error('Usuario sin mascota registradas');
+        throw new Error('Usuario sin mascotas registradas');
     }
     return foundPets;
 
@@ -30,16 +31,15 @@ export const getPetById = async (petId) => {
 }
 
 export const createPet = async (newData) => {
-
+    const newPet = petToAPIFormat(newData);
     const path = `/pets`;
-    return putData('POST', path, newData);
-
+    return putData('POST', path, newPet);
 }
 
 export const updatePet = async (petId, newData) => {
-
+    const updatedPet = petToAPIFormat(newData);
     const path = `/pets/${petId}`;
-    return putData('PUT', path, newData);
+    return putData('PUT', path, updatedPet);
 
 }
 

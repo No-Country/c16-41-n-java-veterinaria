@@ -1,8 +1,8 @@
-import { toAppointment } from '../domain/models/Appointment.js';
+import { apiToAppointmentFormat } from '../domain/models/Appointment.js';
 
 export const singleAppointmentAdapter = (externalData) => {
 
-    const { id, ownerId, petId, serviceId, dateTime, status } = externalData;
+    const { id, owner_id, pet_id, service_id, date_time, status } = externalData;
 
-    return toAppointment(id, ownerId, petId, serviceId, dateTime, status);
+    return apiToAppointmentFormat(id, owner_id, pet_id, service_id, date_time, status);
 }

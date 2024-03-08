@@ -1,16 +1,12 @@
 import { MdOutlinePets } from 'react-icons/md';
 import WhiteContainer from '../common/WhiteContainer';
 import FormInput from '../common/forms/FormInput';
-import { useDispatch, useSelector } from 'react-redux';
-import { toPet } from '../../domain/models/Pet';
-import { setPets } from '../../redux/slices/petsSlice';
+import { useSelector } from 'react-redux';
 import { createPet } from '../../services/PetService';
 
 export default function OwnerAddPetModal({ modal, setModal }) {
 
     const user = useSelector(store => store.user.user);
-    const pets = useSelector(store => store.pets.pets);
-    const dispatch = useDispatch();
 
     if (!modal) return;
 
@@ -29,14 +25,10 @@ export default function OwnerAddPetModal({ modal, setModal }) {
 
         try {
             const savedPet = await createPet(newPet);
+            setModal(false);
         } catch (error) {
             console.error('Error al registrar mascota:', error.message);
         }
-
-        //envio a la bd
-        const updatedPets = [...pets, newPet];
-        dispatch(setPets(updatedPets))
-        setModal(false);
     }
 
     return (

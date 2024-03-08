@@ -1,4 +1,5 @@
 import { singleAppointmentAdapter } from '../adapters/AppointmentAdapter'
+import { appointmentToAPIFormat } from '../domain/models/Appointment';
 import { fetchData, putData } from './api';
 
 export const getAllAppointments = async () => {
@@ -30,16 +31,16 @@ export const getAppointmentsById = async (id) => {
 }
 
 export const createAppointment = async (newData) => {
-
+    const newAppointment = appointmentToAPIFormat(newData);
     const path = `/appointments`;
-    return putData('POST', path, newData);
+    return putData('POST', path, newAppointment);
 
 }
 
 export const updateAppointment = async (appointmentId, newData) => {
-
+    const updatedAppointment = appointmentToAPIFormat(newData);
     const path = `/appointments/${appointmentId}`;
-    return putData('PUT', path, newData);
+    return putData('PUT', path, updatedAppointment);
 
 }
 

@@ -7,7 +7,6 @@ import BtnSubmitAppointment from './BtnSubmitAppointment';
 
 export default function OwnerAddAppointmentModal({ user, pets, modal, setModal }) {
 
-
     if (!modal) return;
 
     const handleCreateAppointment = async (e) => {
@@ -25,13 +24,11 @@ export default function OwnerAddAppointmentModal({ user, pets, modal, setModal }
 
         try {
             const savedAppointment = await createAppointment(appointment);
+            setModal(false);
         } catch (error) {
             console.error('Error al registrar turno:', error.message);
         }
-
-        setModal(false);
     }
-
 
     return (
         <WhiteContainer>

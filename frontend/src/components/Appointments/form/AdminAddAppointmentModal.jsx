@@ -6,6 +6,7 @@ import SelectUser from '../../common/forms/SelectUser';
 import SelectPet from '../../common/forms/SelectPet';
 import SelectService from '../../common/forms/SelectService';
 import BtnSubmitAppointment from './BtnSubmitAppointment';
+import { createAppointment } from '../../../services/AppointmentService';
 
 export default function AdminAddAppointmentModal({ users, pets, modal, setModal }) {
 
@@ -30,13 +31,11 @@ export default function AdminAddAppointmentModal({ users, pets, modal, setModal 
 
         try {
             const savedAppointment = await createAppointment(appointment);
+            setModal(false);
         } catch (error) {
             console.error('Error al registrar turno:', error.message);
         }
-
-        setModal(false);
     }
-
 
     return (
         <WhiteContainer>

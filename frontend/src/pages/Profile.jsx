@@ -4,7 +4,7 @@ import OwnerPets from '../components/Profile/OwnerPets';
 import OwnerProfile from '../components/Profile/OwnerProfile';
 import MainContainer from '../components/common/MainContainer';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPetsTest } from '../services/PetService';
+import { getOwnerPetsById } from '../services/PetService';
 import { setPets } from '../redux/slices/petsSlice';
 
 export default function Profile() {
@@ -16,9 +16,11 @@ export default function Profile() {
 
     useEffect(() => {
         //aca buscaria en la bd
-        const petsFromUser = getPetsTest().filter((p) => p.ownerid == user.id);
-        dispatch(setPets(petsFromUser));
-    }, [])
+        if (user.role == 'Owner') {
+            const petsFromUser = getOwnerPetsById(user.id);
+            dispatch(setPets(petsFromUser));
+        }
+    }, [user, dispatch])
 
     return (
         <MainContainer>

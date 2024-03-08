@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import MainContainer from "../components/common/MainContainer";
 import OwnerAppointments from "../components/Appointments/OwnerAppointments";
-import { getAllUsers, getUsersTest } from "../services/UserService";
-import { getAllPets, getOwnerPetsById, getPetsTest } from "../services/PetService";
-import { getAllAppointments, getAppointmentsByUserId, getAppointmentsTest } from "../services/AppointmentService";
+import { getAllUsers } from "../services/UserService";
+import { getAllPets, getOwnerPetsById } from "../services/PetService";
+import { getAllAppointments, getAppointmentsByUserId } from "../services/AppointmentService";
 import AdminAppointments from "../components/Appointments/AdminAppointments";
 import { useDispatch, useSelector } from "react-redux";
 import { setPets } from "../redux/slices/petsSlice";
@@ -15,21 +15,17 @@ export default function Appointments() {
     const user = useSelector(store => store.user.user);
     const dispatch = useDispatch();
 
-    //const testAllUsers = getUsersTest();
-    //const testAllPets = getPetsTest();
-    //const testAllAppointments = getAppointmentsTest();
-
-    //test user owner
-    //const testPet = testAllPets.filter((p) => p.ownerid == user.id);
-    //const testAppointments = testAllAppointments.filter((a) => a.ownerId == user.id);
-
     useEffect(() => {
         const getData = async () => {
             try {
-                const users = user.role == 'Admin' && await getAllUsers();
+                //if user is admin it fetches all users, pets and appointments
+                //if user is a pet owner it fetches their pets and appointments
+                if (user.role == 'Admin') {
+                    const users = user.role == 'Admin' && await getAllUsers();
+                    dispatch(setUsers(users));
+                }
                 const pets = user.role == 'Admin' ? await getAllPets() : await getOwnerPetsById(user.id);
                 const appointments = user.role == 'Admin' ? await getAllAppointments() : await getAppointmentsByUserId(user.id);
-                dispatch(setUsers(users));
                 dispatch(setPets(pets));
                 dispatch(setAppointments(appointments));
             } catch (error) {
@@ -43,13 +39,11 @@ export default function Appointments() {
         <MainContainer>
             {/*if user is a pet owner it can manage appointments*/}
             {user.role == 'Owner' &&
-                <OwnerAppointments/>
+                <OwnerAppointments />
             }
             {/*if user is admin it can manage users, pets, and appointments*/}
             {user.role == 'Admin' &&
-                <>
-                    <AdminAppointments/>
-                </>
+                <AdminAppointments />
             }
         </MainContainer>
     )

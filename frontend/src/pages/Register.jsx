@@ -2,13 +2,10 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import MainContainer from '../components/common/MainContainer';
 import PageTitle from '../components/common/PageTitle';
 import FormInput from '../components/common/forms/FormInput';
-import { createUser, getUsersTest, signUp } from '../services/UserService';
-import { useDispatch } from 'react-redux';
-import { login } from '../redux/slices/userSlice';
+import { createUser } from '../services/UserService';
 
 export default function Register() {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleCreateAccount = async (e) => {
@@ -18,6 +15,7 @@ export default function Register() {
 
         const user = {
             name: formValues.inputUserName,
+            lastname: formValues.inputUserLastName,
             email: formValues.inputEmail,
             password: formValues.inputPass,
             role: 'Owner',
@@ -26,16 +24,10 @@ export default function Register() {
 
         try {
             const savedUser = await createUser(user);
-            dispatch(login(savedUser));
+            if (savedUser) navigate('/iniciar-sesion');
         } catch (error) {
-            console.error('Error al iniciar sesión:', error.message);
+            console.error('Error al registrar usuario:', error.message);
         }
-
-        //simulacion de usuario guardado en la bd
-        // const user = getUsersTest()[1];
-        // if (user) {
-        //     navigate('/iniciar-sesion');
-        // }
     }
 
     return (
@@ -45,7 +37,8 @@ export default function Register() {
                 <h2 className='mb-2 lg:w-2/3 mx-auto text-center'>Para poder acceder a nuestros servicios, completá los siguientes datos:</h2>
                 <form className='flex flex-col gap-3 mx-6 lg:w-2/3 lg:mx-auto' onSubmit={handleCreateAccount}>
 
-                    <FormInput type='text' label='Nombre completo ' name='inputUserName' placeholder='Jane Doe' />
+                    <FormInput type='text' label='Nombre/s ' name='inputUserName' placeholder='Jane' />
+                    <FormInput type='text' label='Apellido/s ' name='inputUserLastName' placeholder='Doe' />
                     <FormInput type='email' label='Correo electrónico ' name='inputEmail' placeholder='usuario@email.com' />
                     <FormInput type='tel' label='Teléfono ' name='inputPhone' placeholder='112345678' />
                     <FormInput type='password' label='Contraseña ' name='inputPass' placeholder={''} />

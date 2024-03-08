@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import MainContainer from '../components/common/MainContainer';
 import PageTitle from '../components/common/PageTitle';
 import FormInput from '../components/common/forms/FormInput';
-import { getUsersTest, logIn } from '../services/UserService';
+import { logIn } from '../services/UserService';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/slices/userSlice';
 
@@ -23,13 +23,6 @@ export default function LogIn() {
         } catch (error) {
             console.error('Error al iniciar sesión:', error.message);
         }
-
-        //simulacion de usuario recolectado que inicia sesion
-        //const user = getUsersTest()[1];
-        //if (user) {
-        //    dispatch(login(user));
-        //    navigate('/perfil');
-        //}
     }
 
     return (

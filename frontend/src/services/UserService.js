@@ -1,4 +1,5 @@
 import { singleUserAdapter } from '../adapters/UserAdapter'
+import { userToAPIFormat } from '../domain/models/User';
 import { fetchData, putData } from './api';
 
 export const getAllUsers = async () => {
@@ -37,17 +38,15 @@ export const signUp = async (newUser) => {
 }
 
 export const createUser = async (newData) => {
-
+    const newUser = userToAPIFormat(newData);
     const path = `/users`;
-    return putData('POST', path, newData);
-
+    return putData('POST', path, newUser);
 }
 
 export const updateUser = async (userId, newData) => {
-
+    const updatedUser = userToAPIFormat(newData);
     const path = `/users/${userId}`;
-    return putData('PUT', path, newData);
-
+    return putData('PUT', path, updatedUser);
 }
 
 export const getUsersTest = () => {
