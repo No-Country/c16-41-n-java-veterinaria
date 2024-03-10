@@ -1,11 +1,27 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      'buttons': ['Luckiest Guy', 'cursive'],
+      'body': ['Sora', 'sans-serif']
+    },
+    extend: {
+      colors: {
+        'primary': '#0D3B66',
+        'secondary': '#FAF0CA',
+        'tertiary': '#F4D35E',
+        'quaternary': '#EE964B',
+        'quinary': '#F95738'
+      },
+      backgroundImage: {
+        'gradient-230': 'linear-gradient(230deg, var(--tw-gradient-stops))'
+      },
+    },
   },
   plugins: [],
 }
